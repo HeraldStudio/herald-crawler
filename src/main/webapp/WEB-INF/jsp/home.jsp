@@ -9,68 +9,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="<c:url value="/static/css/bootstrap.css" />" rel="stylesheet" />
+    <link href="<c:url value="/static/css/style.css" />" rel="stylesheet" />
     <style>
     <!--
     body {
         background-image: url("<c:url value="/static/img/kindajean.png" />");
-    }
-    #loading {
-        padding: 20px;
-        text-align: center;
-    }
-    #loading p {
-        color: #666666;
-        font-size: 10px;
-        margin-top: 5px;
-    }
-    #ending {
-        padding: 20px;
-        text-align: center;
-    }
-    #content {
-        padding: 100px 0;
-    }
-    #login-info {
-        float: right;
-    }
-    .navbar .brand {
-        margin-left: 20px;
-        font-weight: bold;
-        color: #000;
-        text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
-        -webkit-transition: all .2s linear;
-        -moz-transition: all .2s linear;
-        transition: all .2s linear;
-    }
-    .footer .container {
-        margin-bottom: 20px;
-    }
-    .footer .container p {
-        text-align: center;
-        color: #666666;
-        font-size: 10px;
-    }
-    .thumbnail {
-        margin-bottom: 20px;
-        background-color: #ffffff;
-    }
-    .thumbnail p {
-        margin: 10px 10px;
-    }
-    .more {
-        text-align: right;
-    }
-    .more-section {
-        margin-left: 60px;
-    }
-    .more-section a {
-        color: #AAAAAA;
-        font-weight: normal;
-        font-size: 8px;
-        text-decoration: none;
-    }
-    .top {
-        text-align: right;
     }
     -->
     </style>
@@ -151,7 +94,7 @@
                   </form>
               </div>
           </div> <!-- END OF SEARCH BAR -->
-          <div class="row">
+          <div id="blocks" class="row">
               <!-- THE FIRST SPAN -->
               <div class="span3">
                   <div class="thumbnail">
@@ -230,7 +173,17 @@
       <p>先声爬虫 - <a href="http://herald.seu.edu.cn/">东南大学先声网</a></p>
     </div>
   </footer>
-  <script src="<c:url value="/static/jquery-1.8.1.min.js" />"></script>
+  <script src="<c:url value="/static/js/jquery-1.8.1.min.js" />"></script>
   <script src="<c:url value="/static/js/bootstrap.min.js" />"></script>
+  <script src="<c:url value="/static/js/entry-blocks.js" />"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+        getBlocks("<c:out value="${uri}" />");
+        $(window).scroll(function () {
+            // judge the position
+            // load
+        });
+    });
+  </script>
 </body>
 </html>

@@ -10,5 +10,9 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <bean class="cn.edu.seu.herald.crawler.controller.HomePageController" />
+    <bean class="cn.edu.seu.herald.crawler.controller.HomePageController">
+        <constructor-arg>
+            <null />
+        </constructor-arg>
+    </bean>
 </beans>
