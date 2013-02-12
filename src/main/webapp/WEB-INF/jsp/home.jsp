@@ -101,7 +101,7 @@
                       <img src="<c:url value="/static/img/holder_300x200.png" />" />
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis eleifend blandit. In hac habitasse platea dictumst. Suspendisse vel mi dolor.</p>
                       <p>
-                          <span class="label label-info">讲座</span>
+                          <span class="label label-info">讲座</span><span class="label label-info">新闻</span>
                       </p>
                       <p class="more">
                           <a class="btn btn-link" href="#">详情</a>

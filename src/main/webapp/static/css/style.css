@@ -52,6 +52,10 @@
     margin: 10px 10px;
 }
 
+.thumbnail .label {
+    margin-right: 5px;
+}
+
 .more {
     text-align: right;
 }
