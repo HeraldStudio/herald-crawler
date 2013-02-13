@@ -4,11 +4,7 @@
  */
 package cn.edu.seu.herald.crawler.da.repo;
 
-import cn.edu.seu.herald.crawler.da.mapper.SubscriberMapper;
 import cn.edu.seu.herald.crawler.domain.Subscriber;
-import java.util.Collections;
-import java.util.Map;
-import java.util.WeakHashMap;
 
 /**
  *
@@ -16,24 +12,51 @@ import java.util.WeakHashMap;
  */
 public class SubscriberRepositoryImpl implements SubscriberRepository {
 
-    private final Map<Integer, Subscriber> identityMap;
-    private SubscriberMapper subscriberMapper;
+    private final IdentityMap<Integer, Subscriber> identityMap;
 
-    public SubscriberRepositoryImpl(SubscriberMapper subscriberMapper) {
-        identityMap = Collections.synchronizedMap(
-                new WeakHashMap<Integer, Subscriber>());
-        this.subscriberMapper = subscriberMapper;
+    public SubscriberRepositoryImpl() {
+        identityMap = new IdentityMap();
+    }
+
+    @Override
+    public Subscriber getAnonymousSubscriber() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Subscriber getSubscriberById(int subscriberId) {
         if (identityMap.containsKey(subscriberId)) {
             return identityMap.get(subscriberId);
-
         }
 
-        Subscriber subscriber = subscriberMapper.retrieve(subscriberId);
+        Subscriber subscriber = null;
         identityMap.put(subscriberId, subscriber);
         return subscriber;
+    }
+
+    @Override
+    public Subscriber getSubscriberByUsername(String username) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Subscriber getSubscriberByUsernameAndPassword(String username,
+            String password) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void addSubscriber(Subscriber subscriber) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void removeSubscriber(Subscriber subscriber) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void updateSubscriber(Subscriber subscriber) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

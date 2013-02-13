@@ -20,8 +20,11 @@ public interface EntryBlockService {
     List<EntryBlock> getEntryBlocksBySectionId(int sectionId, int offset,
             int limit);
 
-    List<EntryBlock> getEntryBlocksByArchive(int year, int offset, int limit);
+    List<EntryBlock> getEntryBlocksByArchive(int subscriberId,
+            int year, int offset, int limit);
 
-    List<EntryBlock> getEntryBlocksByArchive(int year, int month, int offset,
-            int limit);
+    List<EntryBlock> getEntryBlocksByArchive(int subscriberId,
+            int year, int month, int offset, int limit);
+
+    List<EntryBlock> getEntryBlocksByKeyword(int subscriberId, String keyword);
 }

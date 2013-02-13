@@ -4,6 +4,8 @@
  */
 package cn.edu.seu.herald.crawler.domain;
 
+import java.util.List;
+
 /**
  *
  * @author rAy <predator.ray@gmail.com>
@@ -14,6 +16,7 @@ public class Subscriber {
     private String username;
     private String password;
     private String nickname;
+    private List<Section> sections;
 
     public Subscriber(int id) {
         this.id = id;
@@ -47,11 +50,19 @@ public class Subscriber {
         this.nickname = nickname;
     }
 
-    public void subscribe(Section section) {
-        ;
+    public List<Section> getSubscribedSection(int sectionId) {
+        return null;
     }
 
-    public boolean hasSubscribed(Section section) {
+    public List<Section> getSubscribedSections() {
+        return sections;
+    }
+
+    public void subscribe(int sectionId) {
+        sections.add(null);
+    }
+
+    public boolean hasSubscribed(int sectioId) {
         return false;
     }
 

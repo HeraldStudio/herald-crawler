@@ -13,6 +13,7 @@ import cn.edu.seu.herald.crawler.model.LoggedInUser;
 public interface AuthenticationService {
 
     LoggedInUser getLoggedInUserBySubscriberId(int subscriberId);
+
     LoggedInUser getLoggedInUserIfConfirmed(String username, String password)
             throws AuthenticationFailure;
 }

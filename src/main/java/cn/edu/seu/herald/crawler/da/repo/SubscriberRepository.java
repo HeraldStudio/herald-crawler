@@ -12,5 +12,18 @@ import cn.edu.seu.herald.crawler.domain.Subscriber;
  */
 public interface SubscriberRepository {
 
-    public Subscriber getSubscriberById(int subscriberId);
+    Subscriber getAnonymousSubscriber();
+
+    Subscriber getSubscriberById(int subscriberId);
+
+    Subscriber getSubscriberByUsername(String username);
+
+    Subscriber getSubscriberByUsernameAndPassword(String username,
+            String password);
+
+    void addSubscriber(Subscriber subscriber);
+
+    void removeSubscriber(Subscriber subscriber);
+
+    void updateSubscriber(Subscriber subscriber);
 }

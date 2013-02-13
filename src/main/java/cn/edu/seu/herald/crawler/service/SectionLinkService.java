@@ -4,6 +4,7 @@
  */
 package cn.edu.seu.herald.crawler.service;
 
+import cn.edu.seu.herald.crawler.model.ArchiveLink;
 import cn.edu.seu.herald.crawler.model.SectionLink;
 import java.util.List;
 
@@ -14,4 +15,6 @@ import java.util.List;
 public interface SectionLinkService {
 
     List<SectionLink> getSectionLinks(int subscriberId);
+
+    List<ArchiveLink> getArchiveLinks(int subscriberId);
 }

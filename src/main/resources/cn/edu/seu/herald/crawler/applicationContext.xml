@@ -10,9 +10,20 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <bean id="authenticationService" class="cn.edu.seu.herald.crawler.service.impl.AuthenticationServiceImpl">
+    </bean>
+    <bean id="entryBlockService" class="cn.edu.seu.herald.crawler.service.impl.EntryBlockServiceImpl">
+    </bean>
+    <bean id="sectionLinkService" class="cn.edu.seu.herald.crawler.service.impl.SectionLinkServiceImpl">
+    </bean>
+
     <bean class="cn.edu.seu.herald.crawler.controller.HomePageController">
-        <constructor-arg>
-            <null />
-        </constructor-arg>
+        <constructor-arg ref="sectionLinkService" />
+    </bean>
+    <bean class="cn.edu.seu.herald.crawler.controller.AuthenticationController">
+        <constructor-arg ref="authenticationService" />
+    </bean>
+    <bean class="cn.edu.seu.herald.crawler.controller.EntryBlocksController">
+        <constructor-arg ref="entryBlockService" />
     </bean>
 </beans>

@@ -4,11 +4,10 @@
  */
 package cn.edu.seu.herald.crawler.service.impl;
 
-import cn.edu.seu.herald.crawler.domain.Entry;
-import cn.edu.seu.herald.crawler.domain.Section;
-import cn.edu.seu.herald.crawler.domain.Subscriber;
 import cn.edu.seu.herald.crawler.model.EntryBlock;
 import cn.edu.seu.herald.crawler.service.EntryBlockService;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -17,39 +16,104 @@ import java.util.List;
  */
 public class EntryBlockServiceImpl implements EntryBlockService {
 
-    public EntryBlockServiceImpl(/*repo*/) {
-        ;
+    private List<EntryBlock> blocks1;
+    private List<EntryBlock> blocks2;
+    private List<EntryBlock> blocks3;
+    private List<EntryBlock> blocks4;
+
+    public EntryBlockServiceImpl() {
+        blocks1 = new LinkedList<EntryBlock>();
+        blocks2 = new LinkedList<EntryBlock>();
+        blocks3 = new LinkedList<EntryBlock>();
+        blocks4 = new LinkedList<EntryBlock>();
+        mockInfo(blocks1, 15);
+        mockInfo(blocks2, 20);
+        mockInfo(blocks3, 5);
+        mockInfo(blocks4, 1);
     }
 
-    @Override
-    public boolean hasSubscribed(int subscriberId, int sectionId) {
-        Subscriber subscriber = null; // retrieve the subscriber by id
-        Section section = null; // retrieve the section by id
-        return subscriber.hasSubscribed(section);
-    }
-
-    @Override
-    public List<EntryBlock> getEntryBlocksBySectionId(int sectionId, int offset,
-            int limit) {
-        Section section = null; // retrieve the section by id from its repository
-        List<Entry> entries = section.getEnties(sectionId, sectionId);
-        return EntryUtils.getEntryBlocks(entries);
-    }
-
-    @Override
-    public List<EntryBlock> getEntryBlocksByArchive(int year, int offset,
-            int limit) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<EntryBlock> getEntryBlocksByArchive(int year, int month,
-            int offset, int limit) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    private static void mockInfo(List<EntryBlock> blocks, int size) {
+        List<String> tags = new LinkedList<String>();
+        tags.add("讲座");
+        for (int counter = 1; counter <= size; ++counter) {
+        blocks.add(new EntryBlock("http://localhost:8084/herald-crawler/"
+                + "static/img/holder_300x200.png", "Lorem ipsum dolor sit amet"
+                + ", consectetur adipiscing elit. Mauris convallis eleifend bl"
+                + "andit. In hac habitasse platea dictumst. Suspendisse vel mi"
+                + " dolor.", tags, "#"));
+        blocks.add(new EntryBlock("http://localhost:8084/herald-crawler/"
+                + "static/img/holder_300x200.png", "Cum sociis natoque penatib"
+                + "us et magnis dis parturient montes=, nascetur ridiculus mus"
+                + ". Curabitur iaculis commodo eleifend. Fusce tincidunt tinci"
+                + "dunt libero non tincidunt.", Collections.EMPTY_LIST, "#"));
+        blocks.add(new EntryBlock(null, "Cum sociis natoque penatib"
+                + "us et magnis dis parturient montes=, nascetur ridiculus mus"
+                + ". Curabitur iaculis commodo eleifend. Fusce tincidunt tinci"
+                + "dunt libero non tincidunt.", Collections.EMPTY_LIST, "#"));
+        blocks.add(new EntryBlock("http://localhost:8084/herald-crawler/"
+                + "static/img/holder_300x200.png", "Cum sociis natoque penatib"
+                + "us et magnis dis parturient montes=, nascetur ridiculus mus"
+                + ". Curabitur iaculis commodo eleifend. Fusce tincidunt tinci"
+                + "dunt libero non tincidunt.", Collections.EMPTY_LIST, "#"));
+        }
     }
 
     @Override
     public List<EntryBlock> getAllEntryBlocks() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<EntryBlock> blocks = new LinkedList<EntryBlock>();
+        blocks.addAll(blocks1);
+        blocks.addAll(blocks2);
+        blocks.addAll(blocks3);
+        blocks.addAll(blocks4);
+        return blocks;
+    }
+
+    @Override
+    public boolean hasSubscribed(int subscriberId, int sectionId) {
+        return (subscriberId == 1) && (sectionId >= 1 && sectionId <= 4);
+    }
+
+    @Override
+    public List<EntryBlock> getEntryBlocksBySectionId(int sectionId,
+            int offset, int limit) {
+        List<EntryBlock> blocks;
+        switch (sectionId) {
+            case 1:
+                blocks = blocks1;
+                break;
+            case 2:
+                blocks = blocks2;
+                break;
+            case 3:
+                blocks = blocks3;
+                break;
+            case 4:
+                blocks = blocks4;
+                break;
+            default:
+                blocks = Collections.EMPTY_LIST;
+        }
+        int toIndex = (offset + limit) > blocks.size()
+                ? blocks.size()
+                : offset + limit;
+        return blocks.subList(offset, toIndex);
+    }
+
+    @Override
+    public List<EntryBlock> getEntryBlocksByArchive(int subscriberId, int year,
+            int offset, int limit) {
+        return Collections.EMPTY_LIST;
+    }
+
+    @Override
+    public List<EntryBlock> getEntryBlocksByArchive(int subscriberId, int year,
+            int month, int offset, int limit) {
+        return Collections.EMPTY_LIST;
+    }
+
+    @Override
+    public List<EntryBlock> getEntryBlocksByKeyword(int subscriberId,
+            String keyword) {
+        return Collections.EMPTY_LIST;
     }
 }
