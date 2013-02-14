@@ -17,7 +17,7 @@
             <li class="nav-header">我的栏目
                 <span class="more-section"><a href="#">添加</a></span>
             </li>
-            <li class="link"><a href="javascript:void(0);" onclick="getBlocks('<c:out value="${allUri}" />')">全部</a></li>
+            <li class="link active"><a href="javascript:void(0);" onclick="getBlocks('<c:out value="${allUri}" />')">全部</a></li>
             <jsp:include page="/WEB-INF/jsp/sections.jsp" />
 
             <li class="nav-header">我的归档</li>
@@ -41,17 +41,17 @@
           </div> <!-- END OF SEARCH BAR -->
           <div id="blocks" class="row">
               <!-- THE FIRST SPAN -->
-              <div class="span3">
+              <div id="span1" class="span3">
                   <div class="thumbnail" id="loading">
                       <img src="<c:url value="/static/img/loading.gif" />" />
                       <p>载入中…</p>
                   </div>
               </div>
               <!-- THE SECOND SPAN -->
-              <div class="span3">
+              <div id="span2" class="span3">
               </div>
               <!-- THE THIRD SPAN -->
-              <div class="span3">
+              <div id="span3" class="span3">
               </div> <!-- END OF THIRD SPAN -->
           </div> <!-- END OF THUMBNAILS -->
       </div> <!-- END OF SPAN 9 -->
@@ -72,10 +72,11 @@
             // second
             '{"imageUrl":"http://localhost:8084/herald-crawler/static/img/holder_300x200.png",' +
             '"link":"#",' +
-            '"tags":["讲座","新闻"],' +
-            '"text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis eleifend blandit. In hac habitasse platea dictumst. Suspendisse vel mi dolor."' +
+            '"tags":["新闻"],' +
+            '"text":"Mauris convallis eleifend blandit. In hac habitasse platea dictumst. Suspendisse vel mi dolor."' +
             '}' +
             ']}');
+        parseJson('{"blocks":[]}');
         $(window).scroll(function () {
             // judge the position
             // load

@@ -3,9 +3,7 @@ function getBlocks(uri) {
         return;
     }
     var offset = $('#thumbnail').length;
-    alert(offset);
     uri = uri + '&offset=' + offset;
-    alert(uri);
     $.ajax({
         url : "/",
         success : function(data) {
@@ -29,7 +27,6 @@ function parseJson(jsonStr) {
         var tags = block.tags;
         var link = block.link;
         renderDivision(imageUrl, text, tags, link);
-        count++;
     }
     if (count > 0) {
         var shortest = getShortestSpan();
