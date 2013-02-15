@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,10 +36,10 @@ public class EntryBlocksController {
         return getJsonResponseByBlocks(blocks);
     }
 
-    @RequestMapping(value = "/blocks", method = RequestMethod.GET,
-            params = "sectionId")
+    @RequestMapping(value = "/blocks/section/{sectionId}",
+            method = RequestMethod.GET)
     public ResponseEntity<String> getEntryBlocksBySectionId(
-            @RequestParam int sectionId,
+            @PathVariable int sectionId,
             @RequestParam(required = false, defaultValue = "0") int offset,
             @RequestParam(required = false, defaultValue = "9") int limit) {
         List<EntryBlock> blocks = entryBlockService.getEntryBlocksBySectionId(
@@ -46,10 +47,10 @@ public class EntryBlocksController {
         return getJsonResponseByBlocks(blocks);
     }
 
-    @RequestMapping(value = "/blocks", method = RequestMethod.GET,
-            params = {"year", "!month"})
+    @RequestMapping(value = "/blocks/archive/{year}",
+            method = RequestMethod.GET)
     public ResponseEntity<String> getEntryBlocksByArchive(
-            @RequestParam int year,
+            @PathVariable int year,
             @RequestParam(required = false, defaultValue = "0") int offset,
             @RequestParam(required = false, defaultValue = "9") int limit,
             HttpSession session) {
@@ -61,10 +62,10 @@ public class EntryBlocksController {
         return getJsonResponseByBlocks(blocks);
     }
 
-    @RequestMapping(value = "/blocks", method = RequestMethod.GET,
-            params = {"year", "month"})
+    @RequestMapping(value = "/blocks/archive/{year}/{month}",
+            method = RequestMethod.GET)
     public ResponseEntity<String> getEntryBlocksByArchive(
-            @RequestParam int year, @RequestParam int month,
+            @PathVariable int year, @PathVariable int month,
             @RequestParam(required = false, defaultValue = "0") int offset,
             @RequestParam(required = false, defaultValue = "9") int limit) {
         List<EntryBlock> blocks = entryBlockService.getEntryBlocksByArchive(
@@ -72,10 +73,12 @@ public class EntryBlocksController {
         return getJsonResponseByBlocks(blocks);
     }
 
-    @RequestMapping(value = "/blocks", method = RequestMethod.GET,
-            params = "keyword")
+    @RequestMapping(value = "/blocks/search/{keyword}",
+            method = RequestMethod.GET)
     public ResponseEntity<String> getEntryBlocksByKeyword(
-            @RequestParam String keyword) {
+            @PathVariable String keyword,
+            @RequestParam(required = false, defaultValue = "0") int offset,
+            @RequestParam(required = false, defaultValue = "9") int limit) {
         return null;
     }
 

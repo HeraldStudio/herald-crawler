@@ -3,21 +3,16 @@ function getBlocks(uri) {
         return;
     }
     var offset = $('#thumbnail').length;
-    uri = uri + '&offset=' + offset;
-    $.ajax({
-        url : "/",
-        success : function(data) {
-            alert(data);
-            parseJson(data);
-        }
+    $.get(uri + '?offset=' + offset, function (data) {
+        parseJson(data);
     });
 }
 
-function parseJson(jsonStr) {
-    var json = jQuery.parseJSON(jsonStr);
+function parseJson(json) {
+    //var json = jQuery.parseJSON(jsonStr);
     var blocks = json.blocks;
     var loadingHtml = $('#loading').html();
-    $('#loading').remove();
+    clearContainer();
 
     var count = 0;
     for (count = 0; count < blocks.length; ++count) {
@@ -37,6 +32,12 @@ function parseJson(jsonStr) {
     } else {
         noMore();
     }
+}
+
+function clearContainer() {
+    $('#span1').empty();
+    $('#span2').empty();
+    $('#span3').empty();
 }
 
 function renderDivision(imageUrl, text, tags, link) {

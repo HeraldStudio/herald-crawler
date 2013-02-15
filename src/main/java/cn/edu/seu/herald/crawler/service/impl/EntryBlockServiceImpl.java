@@ -20,6 +20,32 @@ public class EntryBlockServiceImpl implements EntryBlockService {
     private List<EntryBlock> blocks2;
     private List<EntryBlock> blocks3;
     private List<EntryBlock> blocks4;
+    private static final List<String> tags = new LinkedList<String>();
+    static {
+        tags.add("讲座");
+    }
+
+    private static final EntryBlock[] rBlocks = {
+            new EntryBlock("http://localhost:8084/herald-crawler/"
+                + "static/img/holder_300x200.png", "Lorem ipsum dolor sit amet"
+                + ", consectetur adipiscing elit. Mauris convallis eleifend bl"
+                + "andit. In hac habitasse platea dictumst. Suspendisse vel mi"
+                + " dolor.", tags, "#"),
+            new EntryBlock("http://localhost:8084/herald-crawler/"
+                + "static/img/holder_300x200.png", "Cum sociis natoque penatib"
+                + "us et magnis dis parturient montes=, nascetur ridiculus mus"
+                + ". Curabitur iaculis commodo eleifend. Fusce tincidunt tinci"
+                + "dunt libero non tincidunt.", Collections.EMPTY_LIST, "#"),
+            new EntryBlock(null, "Cum sociis natoque penatib"
+                + "us et magnis dis parturient montes=, nascetur ridiculus mus"
+                + ". Curabitur iaculis commodo eleifend. Fusce tincidunt tinci"
+                + "dunt libero non tincidunt.", Collections.EMPTY_LIST, "#"),
+            new EntryBlock("http://localhost:8084/herald-crawler/"
+                + "static/img/holder_300x200.png", "Cum sociis natoque penatib"
+                + "us et magnis dis parturient montes=, nascetur ridiculus mus"
+                + ". Curabitur iaculis commodo eleifend. Fusce tincidunt tinci"
+                + "dunt libero non tincidunt.", Collections.EMPTY_LIST, "#")
+    };
 
     public EntryBlockServiceImpl() {
         blocks1 = new LinkedList<EntryBlock>();
@@ -33,28 +59,9 @@ public class EntryBlockServiceImpl implements EntryBlockService {
     }
 
     private static void mockInfo(List<EntryBlock> blocks, int size) {
-        List<String> tags = new LinkedList<String>();
-        tags.add("讲座");
         for (int counter = 1; counter <= size; ++counter) {
-        blocks.add(new EntryBlock("http://localhost:8084/herald-crawler/"
-                + "static/img/holder_300x200.png", "Lorem ipsum dolor sit amet"
-                + ", consectetur adipiscing elit. Mauris convallis eleifend bl"
-                + "andit. In hac habitasse platea dictumst. Suspendisse vel mi"
-                + " dolor.", tags, "#"));
-        blocks.add(new EntryBlock("http://localhost:8084/herald-crawler/"
-                + "static/img/holder_300x200.png", "Cum sociis natoque penatib"
-                + "us et magnis dis parturient montes=, nascetur ridiculus mus"
-                + ". Curabitur iaculis commodo eleifend. Fusce tincidunt tinci"
-                + "dunt libero non tincidunt.", Collections.EMPTY_LIST, "#"));
-        blocks.add(new EntryBlock(null, "Cum sociis natoque penatib"
-                + "us et magnis dis parturient montes=, nascetur ridiculus mus"
-                + ". Curabitur iaculis commodo eleifend. Fusce tincidunt tinci"
-                + "dunt libero non tincidunt.", Collections.EMPTY_LIST, "#"));
-        blocks.add(new EntryBlock("http://localhost:8084/herald-crawler/"
-                + "static/img/holder_300x200.png", "Cum sociis natoque penatib"
-                + "us et magnis dis parturient montes=, nascetur ridiculus mus"
-                + ". Curabitur iaculis commodo eleifend. Fusce tincidunt tinci"
-                + "dunt libero non tincidunt.", Collections.EMPTY_LIST, "#"));
+            int index = (int) (Math.random() * 4);
+            blocks.add(rBlocks[index]);
         }
     }
 

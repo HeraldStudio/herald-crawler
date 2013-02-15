@@ -47,9 +47,54 @@
               <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown">${loggedInUser.nickname}&nbsp;<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">个人资料</a></li>
-                    <li><a href="#">我的栏目</a></li>
-                    <li><a href="#">意见反馈</a></li>
+                    <li>
+                        <a href="#profile" data-toggle="modal">个人资料</a>
+                        <div id="profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="profileLabel" aria-hidden="true">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="profileLabel">个人资料</h3>
+                          </div>
+                          <div class="modal-body">
+                            <p>Body…</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+                            <button class="btn btn-primary">提交</button>
+                          </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#mySections" data-toggle="modal">我的栏目</a>
+                        <div id="mySections" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mySectionsLabel" aria-hidden="true">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="mySectionsLabel">所有的栏目</h3>
+                          </div>
+                          <div class="modal-body">
+                            <p>Body…</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+                            <button class="btn btn-primary">提交</button>
+                          </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#suggestion" data-toggle="modal">意见反馈</a>
+                        <div id="suggestion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="suggestionLabel" aria-hidden="true">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="suggestionLabel">意见反馈</h3>
+                          </div>
+                          <div class="modal-body">
+                            <p>Body…</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+                            <button class="btn btn-primary">提交</button>
+                          </div>
+                        </div>
+                    </li>
                     <li class="divider"></li>
                     <li><a href="#" onclick="$('#logout').submit();">注销</a></li>
                   </ul>

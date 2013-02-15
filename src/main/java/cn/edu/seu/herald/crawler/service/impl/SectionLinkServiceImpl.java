@@ -23,16 +23,16 @@ public class SectionLinkServiceImpl implements SectionLinkService {
 
     @Override
     public List<SectionLink> getSectionLinks(int subscriberId) {
-        SectionLink l2 = new SectionLink("教务管理", "/blocks?sectionId=2",
+        SectionLink l2 = new SectionLink("教务管理", "./blocks/section/2",
                 null);
-        SectionLink l3 = new SectionLink("学籍管理", "/blocks?sectionId=3",
+        SectionLink l3 = new SectionLink("学籍管理", "./blocks/section/3",
                 null);
         List<SectionLink> l23 = new LinkedList<SectionLink>();
         l23.add(l2);
         l23.add(l3);
-        SectionLink l1 = new SectionLink("教务处", "./blocks?sectionId=1",
+        SectionLink l1 = new SectionLink("教务处", "./blocks/section/1",
                 l23);
-        SectionLink l4 = new SectionLink("社团信息", "./blocks?sectionId=4",
+        SectionLink l4 = new SectionLink("社团信息", "./blocks/section/4",
                 null);
         List<SectionLink> l14 = new LinkedList<SectionLink>();
         l14.add(l1);

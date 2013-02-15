@@ -106,3 +106,11 @@
     display: none;
     visibility: hidden;
 }
+
+.modal-body {
+    max-height: 400px;
+}
+
+.sub-list li {
+    margin-left: 40px;
+}
