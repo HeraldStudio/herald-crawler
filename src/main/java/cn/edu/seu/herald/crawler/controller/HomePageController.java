@@ -31,12 +31,11 @@ public class HomePageController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getHomePage(Model model, HttpSession session) {
-        LoggedInUser loggedInUser = (LoggedInUser) session.getAttribute(
-                "cn.edu.seu.herald.crawler.loggedInUser");
-        boolean loggedIn = (loggedInUser != null);
-        if (!loggedIn) { // TODO change
+        AuthenticationManager authManager = new AuthenticationManager(session);
+        if (!authManager.isAuthenticated()) { // TODO change
             return "redirect:/login";
         }
+        LoggedInUser loggedInUser = authManager.getLoggedInUser();
         List<SectionLink> sectionLinks = sectionLinkService
                 .getSectionLinks(loggedInUser.getSubscriberId());
         List<ArchiveLink> archiveLinks = sectionLinkService
@@ -44,6 +43,7 @@ public class HomePageController {
         model.addAttribute("loggedInUser", loggedInUser);
         model.addAttribute("sectionLinks", sectionLinks);
         model.addAttribute("archiveLinks", archiveLinks);
+        model.addAttribute("selector", "#mySections");
         model.addAttribute("allUri", HOME_URI);
         return "home";
     }

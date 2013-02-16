@@ -26,4 +26,6 @@
     <bean class="cn.edu.seu.herald.crawler.controller.EntryBlocksController">
         <constructor-arg ref="entryBlockService" />
     </bean>
+    <bean class="cn.edu.seu.herald.crawler.controller.SuggestionController">
+    </bean>
 </beans>

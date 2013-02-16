@@ -7,8 +7,8 @@
 <%@include file="/WEB-INF/jsp/header.jsp" %>
 
   <div class="container" id="content">
-      <form class="form-signin" method="post">
-        <h2 class="form-signin-heading">先声爬虫 - 登录</h2>
+    <form class="form-signin" method="post">
+        <h2 class="form-signin-heading">用户登录</h2>
         <input type="text" name="username" class="input-block-level" placeholder="一卡通">
         <input type="password" name="password" class="input-block-level" placeholder="密码">
         <label class="checkbox">

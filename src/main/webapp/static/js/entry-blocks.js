@@ -11,7 +11,6 @@ function getBlocks(uri) {
 function parseJson(json) {
     //var json = jQuery.parseJSON(jsonStr);
     var blocks = json.blocks;
-    var loadingHtml = $('#loading').html();
     clearContainer();
 
     var count = 0;
@@ -23,13 +22,7 @@ function parseJson(json) {
         var link = block.link;
         renderDivision(imageUrl, text, tags, link);
     }
-    if (count > 0) {
-        var shortest = getShortestSpan();
-        var loadingDiv = "<div class=\"thumbnail\" id=\"loading\">";
-        loadingDiv += loadingHtml;
-        loadingDiv += "</div>";
-        shortest.append(loadingDiv);
-    } else {
+    if (count <= 0) {
         noMore();
     }
 }

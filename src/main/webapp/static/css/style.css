@@ -16,11 +16,10 @@
 }
 
 #content {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 #login-info {
-    float: right;
 }
 
 .navbar .brand {
@@ -65,9 +64,8 @@
 }
 
 .more-section a {
-    color: #AAAAAA;
+    color: #aaaaaa;
     font-weight: normal;
-    font-size: 8px;
     text-decoration: none;
 }
 

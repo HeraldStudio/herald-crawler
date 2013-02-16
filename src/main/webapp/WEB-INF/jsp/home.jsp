@@ -89,7 +89,7 @@
               </div>
             </div>
             <li class="nav-header">我的栏目
-                <span class="more-section"><a href="#allSections" data-toggle="modal">添加</a></span>
+                <span class="more-section"><a href="#allSections" data-toggle="modal">管理</a></span>
             </li>
             <li class="link active"><a href="javascript:void(0);" onclick="getBlocks('<c:out value="${allUri}" />')">全部</a></li>
             <jsp:include page="/WEB-INF/jsp/sections.jsp" />
@@ -116,10 +116,6 @@
           <div id="blocks" class="row">
               <!-- THE FIRST SPAN -->
               <div id="span1" class="span3">
-                  <div class="thumbnail" id="loading">
-                      <img src="<c:url value="/static/img/loading.gif" />" />
-                      <p>载入中…</p>
-                  </div>
               </div>
               <!-- THE SECOND SPAN -->
               <div id="span2" class="span3">
@@ -128,6 +124,12 @@
               <div id="span3" class="span3">
               </div> <!-- END OF THIRD SPAN -->
           </div> <!-- END OF THUMBNAILS -->
+          <div class="row">
+            <div id="loading">
+                <img src="<c:url value="/static/img/loading.gif" />" />
+                <p>载入中…</p>
+            </div>
+          </div>
       </div> <!-- END OF SPAN 9 -->
     </div> <!-- END OF Docs nav (row) -->
 
@@ -144,6 +146,4 @@
             $(this).addClass("active");
         });
     });
-  </script>
-
-<%@include file="/WEB-INF/jsp/footer.jsp" %>
+  </script>z
