@@ -4,9 +4,14 @@
  */
 package cn.edu.seu.herald.crawler.service.impl;
 
+import cn.edu.seu.herald.crawler.da.repo.SectionRepository;
+import cn.edu.seu.herald.crawler.da.repo.SubscriberRepository;
+import cn.edu.seu.herald.crawler.domain.Section;
+import cn.edu.seu.herald.crawler.domain.Subscriber;
 import cn.edu.seu.herald.crawler.model.ArchiveLink;
 import cn.edu.seu.herald.crawler.model.SectionLink;
 import cn.edu.seu.herald.crawler.service.SectionLinkService;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,31 +22,39 @@ import java.util.List;
  */
 public class SectionLinkServiceImpl implements SectionLinkService {
 
-    public SectionLinkServiceImpl() {
-        ;
+    private SubscriberRepository subscriberRepository;
+    private SectionRepository sectionRepository;
+
+    public SectionLinkServiceImpl(SectionRepository sectionRepository) {
+        this.sectionRepository = sectionRepository;
     }
 
     @Override
     public List<SectionLink> getSectionLinks(int subscriberId) {
-        SectionLink l2 = new SectionLink("教务管理", "./blocks/section/2",
-                null);
-        SectionLink l3 = new SectionLink("学籍管理", "./blocks/section/3",
-                null);
-        List<SectionLink> l23 = new LinkedList<SectionLink>();
-        l23.add(l2);
-        l23.add(l3);
-        SectionLink l1 = new SectionLink("教务处", "./blocks/section/1",
-                l23);
-        SectionLink l4 = new SectionLink("社团信息", "./blocks/section/4",
-                null);
-        List<SectionLink> l14 = new LinkedList<SectionLink>();
-        l14.add(l1);
-        l14.add(l4);
-        return l14;
+        Subscriber subscriber = subscriberRepository.getSubscriberById(
+                subscriberId);
+        List<Section> sections = subscriber.getSubscribedSections();
+        return getSectionLinks(sections);
     }
 
     @Override
     public List<ArchiveLink> getArchiveLinks(int subscriberId) {
         return Collections.EMPTY_LIST;
+    }
+
+    private static List<SectionLink> getSectionLinks(
+            Collection<Section> sections) {
+        List<SectionLink> sectionLinks = new LinkedList<SectionLink>();
+        for (Section section : sections) {
+            SectionLink sectionLink = getSectionLink(section);
+            sectionLinks.add(sectionLink);
+        }
+        return sectionLinks;
+    }
+
+    private static SectionLink getSectionLink(Section section) {
+        Collection<Section> subSections = section.getSubSections();
+        List<SectionLink> subSectionLinks = getSectionLinks(subSections);
+        return new SectionLink(section.getName(), null, subSectionLinks);
     }
 }

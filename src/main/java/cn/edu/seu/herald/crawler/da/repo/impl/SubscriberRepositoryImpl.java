@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cn.edu.seu.herald.crawler.da.repo;
+package cn.edu.seu.herald.crawler.da.repo.impl;
 
+import cn.edu.seu.herald.crawler.da.repo.IdentityMap;
+import cn.edu.seu.herald.crawler.da.repo.SubscriberRepository;
 import cn.edu.seu.herald.crawler.domain.Subscriber;
 
 /**

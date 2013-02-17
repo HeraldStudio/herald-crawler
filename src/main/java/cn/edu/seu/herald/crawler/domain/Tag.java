@@ -11,7 +11,6 @@ package cn.edu.seu.herald.crawler.domain;
 public class Tag {
 
     private String name;
-    private Subscriber tagger;
 
     public Tag(String name) {
         this.name = name;
@@ -19,13 +18,5 @@ public class Tag {
 
     public String getName() {
         return name;
-    }
-
-    public Subscriber getTagger() {
-        return tagger;
-    }
-
-    public void setTagger(Subscriber tagger) {
-        this.tagger = tagger;
     }
 }

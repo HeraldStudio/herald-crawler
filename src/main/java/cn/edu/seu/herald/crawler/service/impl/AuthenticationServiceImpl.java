@@ -4,6 +4,8 @@
  */
 package cn.edu.seu.herald.crawler.service.impl;
 
+import cn.edu.seu.herald.crawler.da.repo.SubscriberRepository;
+import cn.edu.seu.herald.crawler.domain.Subscriber;
 import cn.edu.seu.herald.crawler.model.LoggedInUser;
 import cn.edu.seu.herald.crawler.service.AuthenticationFailure;
 import cn.edu.seu.herald.crawler.service.AuthenticationService;
@@ -14,25 +16,33 @@ import cn.edu.seu.herald.crawler.service.AuthenticationService;
  */
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    private LoggedInUser loggedInUser;
+    private SubscriberRepository subscriberRepository;
 
-    public AuthenticationServiceImpl() {
-        loggedInUser = new LoggedInUser(1, "zetaplusae", "ray");
+    public AuthenticationServiceImpl(
+            SubscriberRepository subscriberRepository) {
+        this.subscriberRepository = subscriberRepository;
     }
+
     @Override
     public LoggedInUser getLoggedInUserBySubscriberId(int subscriberId) {
-        if (subscriberId == 1) {
-            return loggedInUser;
-        }
-        return null;
+        Subscriber subscriber = subscriberRepository.getSubscriberById(
+                subscriberId);
+        return getLoggedInUser(subscriber);
     }
 
     @Override
     public LoggedInUser getLoggedInUserIfConfirmed(String username,
             String password) throws AuthenticationFailure {
-        if ("zetaplusae".equals(username) && "123".equals(password)) {
-            return loggedInUser;
+        Subscriber subscriber = subscriberRepository.getSubscriberByUsername(
+                username);
+        if (subscriber != null) {
+            return getLoggedInUser(subscriber);
         }
         throw new AuthenticationFailure();
+    }
+
+    private static LoggedInUser getLoggedInUser(Subscriber subscriber) {
+        return new LoggedInUser(subscriber.getId(),
+                subscriber.getUsername(), subscriber.getNickname());
     }
 }
